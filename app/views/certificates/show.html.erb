@@ -1,0 +1,107 @@
+<div class="container">
+	<hr>
+	<div class="row">
+		<h2 align="center">Znajdź świadectwo / Find the certificate</h2>
+	</div>
+
+	<%= form_with url: certificates_search_path do |f| %>
+
+	  <div class="row">
+      <div class="form-group required col-sm-6">
+        <%= f.label 'Rodzaj / Type', class: 'control-label' %>
+        <%= f.select :number_prefix, 
+              options_for_select([["G1E-* świadectwo radioelektronika pierwszej klasy GMDSS / First-class radio electronic certificate (G1E)", 'G1E-'],
+                                  ["G2E-* świadectwo radioelektronika drugiej klasy GMDSS / Second-class radio electronic certificate (G2E)", 'G2E-'],
+                                  ["GG-* świadectwo ogólne operatora GMDSS / General operator's certificate (GOC)", 'GG-'],
+                                  ["GR-* świadectwo ograniczone operatora GMDSS / Restricted operator's certificate (ROC)", 'GR-']], 
+                selected: "#{params[:number_prefix]}"), 
+              { include_blank: true }, 
+              { autofocus: true, id: 'id_number_prefix', class: 'form-control input-sm' } %>
+      </div>
+	    <div class="form-group required col-sm-2">
+	      <%= f.label 'Numer / Number', class: 'control-label' %>
+	      <%= f.text_field :number, value: "#{params[:number]}", autofocus: false, class: 'form-control input-sm' %>
+	      <small class="help-block">np./e.g. 03490</small>
+	    </div>
+	    <div class="form-group required col-sm-2">
+	      <%= f.label 'Wydane / Date of issue', class: 'control-label' %>
+	      <%= f.text_field :date_of_issue, value: "#{params[:date_of_issue]}", class: 'form-control input-sm datepicker' %>
+	      <small class="help-block">np./e.g. 2018-08-30</small>
+	    </div>
+	    <div class="form-group required col-sm-2" id='id_valid_thru'>
+	      <%= f.label 'Ważne_do / Valid thru', class: 'control-label' %>
+	      <%= f.text_field :valid_thru, value: "#{params[:valid_thru]}", class: 'form-control input-sm datepicker' %>
+	      <small class="help-block">np./e.g. 2023-08-30</small>
+	    </div>
+	  </div>  <!-- /row -->
+
+	  <div class="row">
+	    <div class="form-group required col-sm-5">
+	      <%= f.label 'Nazwisko / Name', class: 'control-label' %>
+	      <%= f.text_field :name, value: "#{params[:name]}", class: 'form-control input-sm' %>
+	      <small class="help-block">np./e.g. Kowalski</small>
+	    </div>
+	    <div class="form-group required col-sm-4">
+	      <%= f.label 'Imiona / Given_names', class: 'control-label' %>
+	      <%= f.text_field :given_names, value: "#{params[:given_names]}", class: 'form-control input-sm' %>
+	      <small class="help-block">np./e.g. Jan</small>
+	    </div>
+	    <div class="form-group required col-sm-3">
+	      <%= f.label 'Data urodzenia / Birth_date', class: 'control-label' %>
+	      <%= f.text_field :birth_date, value: "#{params[:birth_date]}", class: 'form-control input-sm datepicker' %>
+	      <small class="help-block">np./e.g. 1969-07-06</small>
+	    </div>
+	  </div>  <!-- /row -->
+
+
+
+	  <div class="row">
+			<div class="actions col-sm-6">
+				<button class="btn btn-info" data-toggle="modal" data-target="#modal-0" type="button">
+					<span class="glyphicon glyphicon-globe"></span>
+          Typing National Characters
+        </button>
+  		</div>
+			<div class="actions col-sm-6">
+			  <button class="btn btn-primary pull-right" name="button" type="submit">
+			    <span class="glyphicon glyphicon-search"></span>
+			    Szukaj
+			  </button>
+			</div>
+	  </div>  <!-- /row -->
+
+	<% end %>
+
+  <div class="row">
+  	</br>
+    <div id="id_result" class="col-sm-12"></div>
+	</div>  <!-- /row -->
+
+
+</div>  <!-- /container -->
+
+<!-- Modal -->
+<!-- #modal-0 Uwagi ogólne-->
+<div class="modal fade" id="modal-0" tabindex="-1" role="dialog" aria-labelledby="modal-0" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="todo-label">Typing National Characters</h3>
+      </div>
+      <div class="modal-body">
+	    	<h5>Znaki narodowe typu <kbd>ą</kbd><kbd>ę</kbd><kbd>ł</kbd><kbd>ń</kbd> / <kbd>á</kbd><kbd>č</kbd><kbd>ě</kbd><kbd>é</kbd> / <kbd>ä</kbd><kbd>ü</kbd><kbd>ö</kbd><kbd>ß</kbd>, wpisz jako znaki bez akcentu, jeśli nie możesz przełączyć klawiatury na określony język.</h5>
+	    	<h5>National characters type <kbd>ą</kbd><kbd>ę</kbd><kbd>ł</kbd><kbd>ń</kbd> / <kbd>á</kbd><kbd>č</kbd><kbd>ě</kbd><kbd>é</kbd> / <kbd>ä</kbd><kbd>ü</kbd><kbd>ö</kbd><kbd>ß</kbd>, enter as unaccent chars if you can not switch the keyboard to a specific language.</h5>
+	    	<h5>np.: / e.g.:</h5>
+	    	<h5>Kozłowski -> Kozlowski</h5>
+	    	<h5>Novákový -> Novakovy</h5>
+	    	<h5>Müller -> Muller</h5>
+				<h5>Bolesław -> Boleslaw</h5>
+				<h5>Kateřina -> Katerina</h5>     
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Zamknij</button>
+      </div>
+    </div>
+  </div>
+</div>

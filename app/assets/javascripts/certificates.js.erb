@@ -1,0 +1,17 @@
+$(document).ready(function(){
+  $("#id_number_prefix").on("change", function(){
+    var no_vialid_thru = "GL- GS- MA- GS- GC- IW-"
+    var pos = no_vialid_thru.indexOf($("#id_number_prefix").val());
+    if (pos < 0) {
+      document.getElementById("valid_thru").disabled = false;
+      $('#id_valid_thru').slideDown('normal');
+    }
+    else {
+      document.getElementById("valid_thru").value = '';
+      document.getElementById("valid_thru").disabled = true;
+      $('#id_valid_thru').fadeOut('slow');
+    }
+
+  });    
+});
+

@@ -1,0 +1,55 @@
+<% if request_data["certificates"].present? %>
+
+  <div id="result_yes" class="panel panel-success">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <span class="glyphicon glyphicon-ok" style="font-size:3em;">&nbsp;OK</span>
+
+        <button type="button" class="close" data-target="#result_yes" data-dismiss="alert"> <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+
+      </div> 
+    </div>
+
+    <div class="panel-body">
+      <p><strong><%= request_data["certificates"][0]["division"]["short_name"] %>
+              &nbsp;-&nbsp;<%= request_data["certificates"][0]["division"]["name"] %>
+              &nbsp;/&nbsp;<%= request_data["certificates"][0]["division"]["english_name"] %></strong></p>
+      <p>Numer&nbsp;/&nbsp;Number: <strong><%= request_data["certificates"].first["number"] %></strong></p>
+      <p>Data wydania&nbsp;/&nbsp;Date of issue: <strong><%= request_data["certificates"].first["date_of_issue"] %></strong></p> 
+      <p>Ważne do&nbsp;/&nbsp;Valid thru: <strong><%= request_data["certificates"].first["valid_thru"] %></strong></p>
+      <p>Nazwisko&nbsp;/&nbsp;Name: <strong><%= request_data["certificates"].first["customer"]["name"] %></strong></p> 
+      <p>Imiona&nbsp;/&nbsp;Given names: <strong><%= request_data["certificates"].first["customer"]["given_names"] %></strong></p>
+      <p>Data urodzenia&nbsp;/&nbsp;Birth date: <strong><%= request_data["certificates"].first["customer"]["birth_date"] %></strong></p>
+<!--  <p><%#= request_data["certificates"][0] %></p> -->
+
+
+        <%= link_to image_tag("pdf_small.png" ), 
+              certificates_statement_to_pdf_path(req_data_certificate: request_data["certificates"].first, format: "pdf"), 
+              target: "_blank" %>  
+
+     </div>
+  </div>
+
+
+<% else %>
+
+
+  <div id="result_no" class="panel panel-danger">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <span class="glyphicon glyphicon-remove" style="font-size:3em;">&nbsp;Brak danych / Not found!</span>
+
+        <button type="button" class="close" data-target="#result_no" data-dismiss="alert"> <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+
+      </div> 
+    </div>
+
+    <div class="panel-body">
+      <p><%= request_data %></p> 
+    </div>
+  </div>
+
+
+<% end %>
