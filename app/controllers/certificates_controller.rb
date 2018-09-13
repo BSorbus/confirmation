@@ -2,6 +2,12 @@ require 'net/http'
 
 class CertificatesController < ApplicationController
   def show
+    puts '================================= "/Show" ==================================='
+    puts "ip: #{request.ip}"
+    puts "remote_ip: #{request.remote_ip}"
+    puts "X-Real-IP: #{request.headers["X-Real-IP"]}"
+    puts "Host: #{request.headers["Host"]}"
+    puts '============================================================================='
   end
 
   def search
@@ -32,7 +38,7 @@ class CertificatesController < ApplicationController
 
   private
 
-	def request_login 
+  def request_login 
     begin
       # uri = URI("http://localhost:3000/api/v1/login")
       uri = URI("#{Rails.application.secrets[:netpar2015_api_url]}/login")
@@ -48,9 +54,9 @@ class CertificatesController < ApplicationController
       puts "#{e}"
       puts '============================================================================='
     end
-	end  
+  end  
 
-	def request_certificate(token, number_prefix, number, date_of_issue, valid_thru, name, given_names, birth_date)
+  def request_certificate(token, number_prefix, number, date_of_issue, valid_thru, name, given_names, birth_date)
     begin
       # uri = URI("http://localhost:3000/api/v1/certificates/mor_search_by_multi_params")
       uri = URI("#{Rails.application.secrets[:netpar2015_api_url]}/certificates/mor_search_by_multi_params")
@@ -66,6 +72,6 @@ class CertificatesController < ApplicationController
       puts "#{e}"
       puts '============================================================================='
     end
-	end  
+  end  
 
 end
