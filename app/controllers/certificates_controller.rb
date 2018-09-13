@@ -58,6 +58,12 @@ class CertificatesController < ApplicationController
 
   def request_certificate(token, number_prefix, number, date_of_issue, valid_thru, name, given_names, birth_date)
     begin
+    puts '================================= "/Show" ==================================='
+    puts "ip: #{request.ip}"
+    puts "remote_ip: #{request.remote_ip}"
+    puts "X-Real-IP: #{request.headers["X-Real-IP"]}"
+    puts "Host: #{request.headers["Host"]}"
+    puts '============================================================================='
       # uri = URI("http://localhost:3000/api/v1/certificates/mor_search_by_multi_params")
       uri = URI("#{Rails.application.secrets[:netpar2015_api_url]}/certificates/mor_search_by_multi_params")
       http = Net::HTTP.new(uri.host, uri.port)
