@@ -57,7 +57,7 @@ class CertificatesController < ApplicationController
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE # Sets the HTTPS verify mode
-      req = Net::HTTP::Get.new(uri.path, {'Content-Type' => 'application/json', 'Authorization' => "#{token}", 'X-Real-IP' => "#{request.headers["X-Real-IP"]}"})
+      req = Net::HTTP::Get.new(uri.path, {'Content-Type' => 'application/json', 'Authorization' => "#{token}", 'X-Real-IP' => "#{request.remote_ip}"})
       req.body = {"number_prefix" => "#{number_prefix}", "number" => "#{number}", "date_of_issue" => "#{date_of_issue}", "valid_thru" => "#{valid_thru}", "name" => "#{name}", "given_names" => "#{given_names}", "birth_date" => "#{birth_date}" }.to_json
       res = http.request(req)
       JSON.parse(res.body)
