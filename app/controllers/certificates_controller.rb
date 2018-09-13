@@ -2,12 +2,6 @@ require 'net/http'
 
 class CertificatesController < ApplicationController
   def show
-    puts '================================= "/Show" ==================================='
-    puts "ip: #{request.ip}"
-    puts "remote_ip: #{request.remote_ip}"
-    puts "X-Real-IP: #{request.headers["X-Real-IP"]}"
-    puts "Host: #{request.headers["Host"]}"
-    puts '============================================================================='
   end
 
   def search
@@ -58,18 +52,12 @@ class CertificatesController < ApplicationController
 
   def request_certificate(token, number_prefix, number, date_of_issue, valid_thru, name, given_names, birth_date)
     begin
-    puts '================================= "/Show" ==================================='
-    puts "ip: #{request.ip}"
-    puts "remote_ip: #{request.remote_ip}"
-    puts "X-Real-IP: #{request.headers["X-Real-IP"]}"
-    puts "Host: #{request.headers["Host"]}"
-    puts '============================================================================='
       # uri = URI("http://localhost:3000/api/v1/certificates/mor_search_by_multi_params")
       uri = URI("#{Rails.application.secrets[:netpar2015_api_url]}/certificates/mor_search_by_multi_params")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE # Sets the HTTPS verify mode
-      req = Net::HTTP::Get.new(uri.path, {'Content-Type' => 'application/json', 'Authorization' => "#{token}"})
+      req = Net::HTTP::Get.new(uri.path, {'Content-Type' => 'application/json', 'Authorization' => "#{token}", 'X-Real-IP' => "#{request.headers["X-Real-IP"]}"})
       req.body = {"number_prefix" => "#{number_prefix}", "number" => "#{number}", "date_of_issue" => "#{date_of_issue}", "valid_thru" => "#{valid_thru}", "name" => "#{name}", "given_names" => "#{given_names}", "birth_date" => "#{birth_date}" }.to_json
       res = http.request(req)
       JSON.parse(res.body)
