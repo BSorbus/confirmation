@@ -73,7 +73,7 @@ class PdfStatement < Prawn::Document
   end
 
   def header_right_corner
-    draw_text "Warsaw, " + Time.now.strftime('%Y-%m-%d'), :at => [400, 710], size: 11
+    draw_text "Gdynia, " + Time.now.strftime('%Y-%m-%d'), :at => [400, 710], size: 11
   end
 
 
@@ -109,7 +109,7 @@ class PdfStatement < Prawn::Document
   def footer
     stroke_color "BECC25"
     stroke_line [0, 10], [525,10], self.line_width = 2.0
-    text "generated from https://confirmation.uke.gov.pl  © 2018 UKE-BI-WUR", size: 6, :style => :italic, :align => :right, :valign => :bottom  
+    text "generated from https://confirmation.uke.gov.pl,  e-mail: ske_gdynia@uke.gov.pl,  © 2018 UKE", size: 6, :style => :italic, :align => :right, :valign => :bottom  
   end
 
 end

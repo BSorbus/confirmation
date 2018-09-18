@@ -57,10 +57,13 @@
 
 	  <div class="row">
 			<div class="actions col-sm-6">
-				<button class="btn btn-info" data-toggle="modal" data-target="#modal-0" type="button">
+<!--
+ 				<button class="btn btn-info" data-toggle="modal" data-target="#modal-0" type="button">
 					<span class="glyphicon glyphicon-globe"></span>
           Typing National Characters
         </button>
+-->
+        <%= link_to 'Typing National Characters', "#", data: {toggle: "modal", target: "#modal-0"} %>
   		</div>
 			<div class="actions col-sm-6">
 			  <button class="btn btn-primary pull-right" name="button" type="submit">
