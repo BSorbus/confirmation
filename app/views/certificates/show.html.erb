@@ -1,13 +1,15 @@
 <div class="container">
 	<hr>
 	<div class="row">
-		<h2 align="center">Znajdź świadectwo / Find the certificate</h2>
+		<h2 class="visible-xs" align="center">Znajdź świadectwo</h2>
+		<h2 class="visible-xs" align="center">Find the certificate</h2>
+		<h2 class="hidden-xs" align="center">Znajdź świadectwo / Find the certificate</h2>
 	</div>
 
 	<%= form_with url: certificates_search_path do |f| %>
 
 	  <div class="row">
-      <div class="form-group required col-xs-12 col-md-12 col-lg-6">
+      <div class="form-group required col-lg-12">
         <%= f.label 'Rodzaj / Type', class: 'control-label' %>
         <%= f.select :number_prefix, 
               options_for_select([["G1E-* świadectwo radioelektronika pierwszej klasy GMDSS / First-class radio electronic certificate (G1E)", 'G1E-'],
@@ -19,17 +21,19 @@
               { include_blank: true }, 
               { autofocus: true, id: 'id_number_prefix', class: 'form-control input-sm' } %>
       </div>
-	    <div class="form-group required col-sm-12 col-md-4 col-lg-2">
+	  </div>  <!-- /row -->
+	  <div class="row">
+	    <div class="form-group required col-sm-12 col-md-4">
 	      <%= f.label 'Numer / Number', class: 'control-label' %>
 	      <%= f.text_field :number, value: "#{params[:number]}", autofocus: false, class: 'form-control input-sm' %>
 	      <small class="help-block">np./e.g. 03490</small>
 	    </div>
-	    <div class="form-group required col-sm-6 col-md-4 col-lg-2">
+	    <div class="form-group required col-sm-6 col-md-4">
 	      <%= f.label 'Wydane / Date of issue', class: 'control-label' %>
 	      <%= f.text_field :date_of_issue, value: "#{params[:date_of_issue]}", class: 'form-control input-sm datepicker' %>
 	      <small class="help-block">np./e.g. 2018-08-30</small>
 	    </div>
-	    <div class="form-group required col-sm-6 col-md-4 col-lg-2" id='id_valid_thru'>
+	    <div class="form-group required col-sm-6 col-md-4" id='id_valid_thru'>
 	      <%= f.label 'Ważne_do / Valid thru', class: 'control-label' %>
 	      <%= f.text_field :valid_thru, value: "#{params[:valid_thru]}", class: 'form-control input-sm datepicker' %>
 	      <small class="help-block">np./e.g. 2023-08-30</small>
@@ -37,7 +41,7 @@
 	  </div>  <!-- /row -->
 
 	  <div class="row">
-	    <div class="form-group required col-sm-6 col-md-5">
+	    <div class="form-group required col-sm-6 col-md-4">
 	      <%= f.label 'Nazwisko / Name', class: 'control-label' %>
 	      <%= f.text_field :name, value: "#{params[:name]}", class: 'form-control input-sm' %>
 	      <small class="help-block">np./e.g. Kowalski</small>
@@ -47,7 +51,7 @@
 	      <%= f.text_field :given_names, value: "#{params[:given_names]}", class: 'form-control input-sm' %>
 	      <small class="help-block">np./e.g. Jan</small>
 	    </div>
-	    <div class="form-group required col-sm-6 col-md-3">
+	    <div class="form-group required col-sm-6 col-md-4">
 	      <%= f.label 'Data urodzenia / Birth_date', class: 'control-label' %>
 	      <%= f.text_field :birth_date, value: "#{params[:birth_date]}", class: 'form-control input-sm datepicker' %>
 	      <small class="help-block">np./e.g. 1969-07-06</small>
