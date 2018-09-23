@@ -64,3 +64,4 @@ gem 'prawn'
 gem 'prawn-qrcode'
 
 gem 'mina'
+gem 'rack-attack'
