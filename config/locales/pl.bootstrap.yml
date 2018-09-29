@@ -1,0 +1,29 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+pl:
+  pages:
+    users: "Użytkownicy"
+    sign_in: "Zaloguj się"
+    sign_out: "Wyloguj się"
+    change_password: "Zmień hasło"
+  helpers:
+    actions: "Akcje"
+    links:
+      back: "Powrót"
+      cancel: "Wróć"
+      confirm: "Czy na pewno?"
+      confirm_destroy: 'Na pewno chcesz usunąć wpis: "%{data}"?'
+      destroy: " Usuń"
+      destroy_account: "Usuń moje konto"
+      new: " Nowy"
+      edit: " Edycja"
+      index: " Lista"
+      send_email: " Wyślij email"
+      download: " Pobierz"
+    titles:
+      edit: "Edycja %{model}"
+      save: "Zapisz %{model}"
+      new: "Nowy %{model}"
+      delete: "Usuń %{model}"
+      change_your_password: "Zmiań swoje hasło"

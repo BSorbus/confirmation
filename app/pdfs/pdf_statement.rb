@@ -96,7 +96,7 @@ class PdfStatement < Prawn::Document
     draw_text "Valid thru:", :at => [70, 460], size: 11
           draw_text "#{valid_thru}", :at => [150, 460], size: 11
 
-    draw_text "has been issued for Ms. #{cert[:customer][:name]} #{cert[:customer][:given_names]} (date of birth #{cert[:customer][:birth_date]}).", :at => [0, 420], size: 11
+    draw_text "has been issued for #{cert[:customer][:name]} #{cert[:customer][:given_names]} (date of birth #{cert[:customer][:birth_date]}).", :at => [0, 420], size: 11
 
     text_box "The above certificate has been issued according to the IMO Convention STCW by the " + 
              "President of the Office of Electronic Communications.", size: 11, :align => :justify, 

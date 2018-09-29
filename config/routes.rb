@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  get 'certificates/show'
-  post 'certificates/search'
-  get 'certificates/statement_to_pdf'
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+	get '/certificates', to: 'certificates#new'
+	get '/certificates/new', to: 'certificates#new'
+	post '/certificates', to: 'certificates#create'
+  get '/certificates/statement_to_pdf'
+
 end

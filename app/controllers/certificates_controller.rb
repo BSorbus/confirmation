@@ -1,15 +1,32 @@
-require 'net/http'
-
 class CertificatesController < ApplicationController
-  def show
+
+  def new
+    @certificate ||= Certificate.new
+    @certificate.number_prefix = params[:number_prefix] if params[:number_prefix].present?
+    @certificate.number = params[:number] if params[:number].present?
+    @certificate.date_of_issue = params[:date_of_issue] if params[:date_of_issue].present?
+    @certificate.valid_thru = params[:valid_thru] if params[:valid_thru].present?
+    @certificate.name = params[:name] if params[:name].present?
+    @certificate.given_names = params[:given_names] if params[:given_names].present?
+    @certificate.birth_date = params[:birth_date] if params[:birth_date].present?
   end
 
-  def search
-    user = request_login 
-    token = user["user"]["authentication_token"] if user.present? && user["user"].present? 
-    @request_data = request_certificate(token, params[:number_prefix], params[:number].strip, params[:date_of_issue], params[:valid_thru], params[:name].strip, params[:given_names].strip, params[:birth_date])
-    respond_to do |format|
-      format.js   { render status: :ok, layout: false, file: 'certificates/result.js.erb' }
+  # POST /certificates
+  # POST /certificates.json
+  def create
+    @certificate = Certificate.new(certificate_params)
+    if @certificate.valid?
+      @user = User.new
+      user_resp = @user.request_login 
+      token = user_resp["user"]["authentication_token"] if user_resp.present? && user_resp["user"].present? 
+      @certificate_resp = @certificate.request_certificate(token, request.remote_ip)
+      respond_to do |format|
+        format.html { render :new }
+      end
+    else
+      respond_to do |format|
+        format.html { render :new }
+      end
     end
   end
 
@@ -28,44 +45,10 @@ class CertificatesController < ApplicationController
     end
   end
 
-
-
   private
-
-  def request_login 
-    begin
-      # uri = URI("http://localhost:3000/api/v1/login")
-      uri = URI("#{Rails.application.secrets[:netpar2015_api_url]}/login")
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE # Sets the HTTPS verify mode
-      req = Net::HTTP::Post.new(uri.path, {'Content-Type' => 'application/json'})
-      req.body = {"email" => "#{Rails.application.secrets[:netpar2015_api_user]}", "password" => "#{Rails.application.secrets[:netpar2015_api_user_pass]}"}.to_json
-      res = http.request(req)
-      JSON.parse(res.body)
-    rescue => e
-      puts '============================= API ERROR "login" ============================='
-      puts "#{e}"
-      puts '============================================================================='
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def certificate_params
+      params.require(:certificate).permit(:number_prefix, :number, :date_of_issue, :valid_thru, :name, :given_names, :birth_date)
     end
-  end  
-
-  def request_certificate(token, number_prefix, number, date_of_issue, valid_thru, name, given_names, birth_date)
-    begin
-      # uri = URI("http://localhost:3000/api/v1/certificates/mor_search_by_multi_params")
-      uri = URI("#{Rails.application.secrets[:netpar2015_api_url]}/certificates/mor_search_by_multi_params")
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE # Sets the HTTPS verify mode
-      req = Net::HTTP::Get.new(uri.path, {'Content-Type' => 'application/json', 'Authorization' => "#{token}", 'X-Real-IP' => "#{request.remote_ip}"})
-      req.body = {"number_prefix" => "#{number_prefix}", "number" => "#{number}", "date_of_issue" => "#{date_of_issue}", "valid_thru" => "#{valid_thru}", "name" => "#{name}", "given_names" => "#{given_names}", "birth_date" => "#{birth_date}" }.to_json
-      res = http.request(req)
-      JSON.parse(res.body)
-    rescue => e
-      puts '========================== API ERROR "certificate" =========================='
-      puts "#{e}"
-      puts '============================================================================='
-    end
-  end  
 
 end

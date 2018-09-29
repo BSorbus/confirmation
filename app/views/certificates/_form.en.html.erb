@@ -1,0 +1,132 @@
+<style type="text/css">
+  .form-group.required .control-label:hover:after{
+    background: rgba(0,0,0,.75);
+    border-radius: 5px;
+    top: -30px;
+    color: #fff;
+    content: 'required';
+    left: 25px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 98;
+  }
+</style>
+
+<%= form_with(model: certificate, local: true) do |form| %>
+  <div class="container">
+    <hr>
+    <div class="row">
+      <h2 class="center index-title"><%= t('pages.certificate.new.title') %></h2>
+    </div>
+
+    <% if certificate.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+        <% certificate.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="form-group required col-lg-12">
+        <%= form.label :number_prefix, class: 'control-label' %>
+        <%= form.select :number_prefix, 
+              options_for_select([["G1E-* First-class radio electronic certificate (G1E)", 'G1E-'],
+                                  ["G2E-* Second-class radio electronic certificate (G2E)", 'G2E-'],
+                                  ["GG-* General operator's certificate (GOC)", 'GG-'],
+                                  ["GR-* Restricted operator's certificate (ROC)", 'GR-'], 
+                                  ["GL-* Long range operator's certificate", 'GL-']], 
+                selected: certificate.number_prefix), 
+              { include_blank: true }, 
+              { autofocus: true, id: 'id_number_prefix', class: 'form-control input-sm' } %>
+      </div>
+    </div>  <!-- /row -->
+    <div class="row">
+      <div class="form-group required col-sm-12 col-md-4">
+        <%= form.label :number, class: 'control-label' %>
+        <%= form.text_field :number, autofocus: false, class: 'form-control input-sm' %>
+        <small class="help-block">e.g. 03490</small>
+      </div>
+      <div class="form-group required col-sm-6 col-md-4">
+        <%= form.label :date_of_issue, class: 'control-label' %>
+        <%= form.text_field :date_of_issue, class: 'form-control input-sm datepicker' %>
+        <small class="help-block">e.g. 2018-08-30</small>
+      </div>
+      <div class="form-group required col-sm-6 col-md-4" id='id_valid_thru'>
+        <%= form.label :valid_thru, class: 'control-label' %>
+        <%= form.text_field :valid_thru, class: 'form-control input-sm datepicker' %>
+        <small class="help-block">e.g. 2023-08-30</small>
+      </div>
+    </div>  <!-- /row -->
+
+    <div class="row">
+      <div class="form-group required col-sm-6 col-md-4">
+        <%= form.label :name, class: 'control-label' %>
+        <%= form.text_field :name, class: 'form-control input-sm' %>
+        <small class="help-block">e.g. Kowalski</small>
+      </div>
+      <div class="form-group required col-sm-6 col-md-4">
+        <%= form.label :given_names, class: 'control-label' %>
+        <%= form.text_field :given_names, class: 'form-control input-sm' %>
+        <small class="help-block">e.g. Jan</small>
+      </div>
+      <div class="form-group required col-sm-6 col-md-4">
+        <%= form.label :birth_date, class: 'control-label' %>
+        <%= form.text_field :birth_date, class: 'form-control input-sm datepicker' %>
+        <small class="help-block">e.g. 1969-07-06</small>
+      </div>
+    </div>  <!-- /row -->
+
+    <div class="row">
+      <div class="actions col-md-6">
+<!--
+        <button class="btn btn-info" data-toggle="modal" data-target="#modal-0" type="button">
+          <span class="glyphicon glyphicon-globe"></span>
+          Typing National Characters
+        </button>
+-->
+        <%= link_to 'Typing national characters', "#", data: {toggle: "modal", target: "#modal-0"} %>
+      </div>
+      <div class="actions col-md-6">
+        <button class="btn btn-primary pull-right" name="button" type="submit">
+          <span class="glyphicon glyphicon-search"></span>
+          Search
+        </button>
+      </div>
+    </div>  <!-- /row -->
+
+    <div class="row">
+      </br>
+      <div id="id_result" class="col-md-12"></div>
+    </div>  <!-- /row -->
+
+  </div>  <!-- /container -->
+
+<% end %>
+
+<!-- Modal -->
+<!-- #modal-0 Uwagi ogólne-->
+<div class="modal fade" id="modal-0" tabindex="-1" role="dialog" aria-labelledby="modal-0" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="todo-label">Typing national characters</h3>
+      </div>
+      <div class="modal-body">
+        <h5>National characters type <kbd>ą</kbd><kbd>ę</kbd><kbd>ł</kbd><kbd>ń</kbd> / <kbd>á</kbd><kbd>č</kbd><kbd>ě</kbd><kbd>é</kbd> / <kbd>ä</kbd><kbd>ü</kbd><kbd>ö</kbd><kbd>ß</kbd>, enter as unaccent chars if you can not switch the keyboard to a specific language.</h5>
+        <h5>e.g.:</h5>
+        <h5>Kozłowski -> Kozlowski</h5>
+        <h5>Novákový -> Novakovy</h5>
+        <h5>Müller -> Muller</h5>
+        <h5>Bolesław -> Boleslaw</h5>
+        <h5>Kateřina -> Katerina</h5>     
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
