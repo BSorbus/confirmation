@@ -15,7 +15,7 @@ class Certificate
   validates :date_of_issue, presence: true,
                     length: { is: 10 }
   validates :valid_thru, presence: true, 
-                    length: { is: 10 }
+                    length: { is: 10 }, :if => :condition_testing?
   validates :name, presence: true,
                     length: { in: 1..100 }
   validates :given_names, presence: true,
@@ -23,15 +23,10 @@ class Certificate
   validates :birth_date, presence: true,
                     length: { is: 10 }
 
-  validate  :valid_thru_if_custom_prefix
-
  
-  def valid_thru_if_custom_prefix
-    if valid_thru.blank? && ['GL-', 'GS-', 'MA-', 'GS-', 'GC-', 'IW-'].include?(number_prefix)
-      errors.add(:valid_thru, ":blank")
-    	throw :abort 
-    end
-  end 
+  def condition_testing?
+      !(valid_thru.blank? && ['GL-', 'GS-', 'MA-', 'GS-', 'GC-', 'IW-'].include?(number_prefix))
+  end
 
   def request_certificate(token, remote_ip)
     begin
