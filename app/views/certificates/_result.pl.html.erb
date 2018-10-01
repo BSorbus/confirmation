@@ -1,55 +1,49 @@
 <% if certificate_resp.present? && certificate_resp["certificates"].present? %>
-  <div class="container">
 
-    <div id="result_yes" class="panel panel-success">
-      <div class="panel-heading">
-        <div class="panel-title">
-          <span class="glyphicon glyphicon-ok" style="font-size:3em;">&nbsp;OK</span>
-
-          <button type="button" class="close" data-target="#result_yes" data-dismiss="alert"> <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-          </button>
-
-        </div> 
-      </div>
-
-      <div class="panel-body">
-        <p><strong><%= certificate_resp["certificates"][0]["division"]["short_name"] %>
-                &nbsp;-&nbsp;<%= certificate_resp["certificates"][0]["division"]["name"] %>
-                &nbsp;/&nbsp;<%= certificate_resp["certificates"][0]["division"]["english_name"] %></strong></p>
-        <p>Numer: <strong><%= certificate_resp["certificates"].first["number"] %></strong></p>
-        <p>Data wydania: <strong><%= certificate_resp["certificates"].first["date_of_issue"] %></strong></p> 
-        <p>Ważne do: <strong><%= certificate_resp["certificates"].first["valid_thru"] %></strong></p>
-        <p>Nazwisko: <strong><%= certificate_resp["certificates"].first["customer"]["name"] %></strong></p> 
-        <p>Imiona: <strong><%= certificate_resp["certificates"].first["customer"]["given_names"] %></strong></p>
-        <p>Data urodzenia: <strong><%= certificate_resp["certificates"].first["customer"]["birth_date"] %></strong></p>
-  <!--  <p><%#= certificate_resp["certificates"][0] %></p> -->
-
-          <%= link_to image_tag("pdf_small.png" ), 
-                certificates_statement_to_pdf_path(req_data_certificate: certificate_resp["certificates"].first, format: "pdf"), 
-                target: "_blank" %>  
-
-      </div>
+  <div id="result_yes" class="panel panel-success">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <span class="glyphicon glyphicon-ok"></span>
+        <span>&nbsp;&nbsp;OK</span>
+        <button type="button" class="close" data-target="#result_yes" data-dismiss="alert"> <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+      </div> 
     </div>
 
+    <div class="panel-body">
+      <p><strong><%= certificate_resp["certificates"][0]["division"]["short_name"] %>
+              &nbsp;-&nbsp;<%= certificate_resp["certificates"][0]["division"]["name"] %>
+              &nbsp;/&nbsp;<%= certificate_resp["certificates"][0]["division"]["english_name"] %></strong></p>
+      <p>Numer: <strong><%= certificate_resp["certificates"].first["number"] %></strong></p>
+      <p>Data wydania: <strong><%= certificate_resp["certificates"].first["date_of_issue"] %></strong></p> 
+      <p>Ważne do: <strong><%= certificate_resp["certificates"].first["valid_thru"] %></strong></p>
+      <p>Nazwisko: <strong><%= certificate_resp["certificates"].first["customer"]["name"] %></strong></p> 
+      <p>Imiona: <strong><%= certificate_resp["certificates"].first["customer"]["given_names"] %></strong></p>
+      <p>Data urodzenia: <strong><%= certificate_resp["certificates"].first["customer"]["birth_date"] %></strong></p>
+<!--  <p><%#= certificate_resp["certificates"][0] %></p> -->
+
+      <%= link_to image_tag("pdf_small.png" ), 
+            certificates_statement_to_pdf_path(req_data_certificate: certificate_resp["certificates"].first, format: "pdf"), 
+            target: "_blank" %>  
+
+    </div>
   </div>
 
 <% else %>
-  <div class="container">
-    <div id="result_no" class="panel panel-danger">
-      <div class="panel-heading">
-        <div class="panel-title">
-          <span class="glyphicon glyphicon-remove" style="font-size:3em;">&nbsp;Weryfikacja negatywna</span>
 
-          <button type="button" class="close" data-target="#result_no" data-dismiss="alert"> <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-          </button>
-
-        </div> 
-      </div>
-
-      <div class="panel-body">
-        <p><%= certificate_resp %></p> 
-      </div>
+  <div id="result_no" class="panel panel-danger">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <span class="glyphicon glyphicon-remove"></span>
+        <span>&nbsp;&nbsp;Weryfikacja negatywna</span>
+        <button type="button" class="close" data-target="#result_no" data-dismiss="alert"> <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+      </div> 
     </div>
 
+    <div class="panel-body">
+      <p><%= certificate_resp %></p> 
+    </div>
   </div>
+
 <% end %>

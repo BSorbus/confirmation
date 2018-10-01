@@ -21,12 +21,19 @@
 
     <% if certificate.errors.any? %>
       <div id="error_explanation">
+        <button type="button" class="close" data-target="#error_explanation" data-dismiss="alert"> <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+
         <ul>
         <% certificate.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
         </ul>
       </div>
+    <% end %>
+
+    <% if @certificate_resp.present? %>
+      <%= render "result", certificate_resp: @certificate_resp %>
     <% end %>
 
     <div class="row">
