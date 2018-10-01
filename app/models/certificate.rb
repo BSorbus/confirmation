@@ -2,6 +2,8 @@ require 'net/http'
 
 class Certificate
 	include ActiveModel::Model
+  include ActiveModel::Validations
+  include ActiveModel::Validations::Callbacks
   extend ActiveModel::Translation
 
 	attr_accessor :number_prefix, :number, :date_of_issue, :valid_thru, :name, :given_names, :birth_date
@@ -23,9 +25,20 @@ class Certificate
   validates :birth_date, presence: true,
                     length: { is: 10 }
 
- 
+  # callbacks 
+  before_validation :prepare_data_params
+
   def condition_testing?
       !(valid_thru.blank? && ['GL-', 'GS-', 'MA-', 'GS-', 'GC-', 'IW-'].include?(number_prefix))
+  end
+  def prepare_data_params
+    self.number_prefix = Loofah.fragment("#{self.number_prefix}").text
+    self.number = Loofah.fragment("#{self.number.strip}").text
+    self.date_of_issue = Loofah.fragment("#{self.date_of_issue}").text
+    self.valid_thru = Loofah.fragment("#{self.valid_thru}").text
+    self.name = Loofah.fragment("#{self.name.strip}").text
+    self.given_names = Loofah.fragment("#{self.given_names.strip}").text
+    self.birth_date = Loofah.fragment("#{self.birth_date}").text
   end
 
   def request_certificate(token, remote_ip)
