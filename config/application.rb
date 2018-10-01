@@ -28,10 +28,8 @@ module Imo
     # the framework and any gems in your application.
 
     config.middleware.use Rack::Attack
-    config.i18n.default_locale = :pl
+    config.i18n.default_locale = :en
     config.i18n.available_locales = [:en, :pl]
-
-
     
   end
 end
