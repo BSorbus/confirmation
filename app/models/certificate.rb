@@ -31,6 +31,7 @@ class Certificate
   def condition_testing?
       !(valid_thru.blank? && ['GL-', 'GS-', 'MA-', 'GS-', 'GC-', 'IW-'].include?(number_prefix))
   end
+
   def prepare_data_params
     self.number_prefix = Loofah.fragment("#{self.number_prefix}").text
     self.number = Loofah.fragment("#{self.number.strip}").text

@@ -13,21 +13,13 @@
  */
 
 
-#result_info {
-  @extend .alert;
-  @extend .alert-info;
-}
-
-#result_no {
-  @extend .alert;
+#result_no .panel-body {
   @extend .alert-danger;
 }
 
-#result_yes {
-  @extend .success;
+#result_yes .panel-body {
   @extend .alert-success;
 }
-
 
 
 $font-family-base: Arial, "Helvetica", sans-serif;
