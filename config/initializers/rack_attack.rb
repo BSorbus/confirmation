@@ -9,7 +9,7 @@ class Rack::Attack
   # whitelisting). It must implement .increment and .write like
   # ActiveSupport::Cache::Store
 
-  # Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new 
+  Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new 
 
   ### Throttle Spammy Clients ###
 
@@ -24,10 +24,14 @@ class Rack::Attack
   # Throttle all requests by IP (60rpm)
   #
   # Key: "rack::attack:#{Time.now.to_i/:period}:req/ip:#{req.ip}"
-  throttle('req/ip', limit: 60, period: 1.minutes) do |req|
-    req.ip # unless req.path.start_with?('/assets')
-  end
+  # throttle('req/ip', limit: 60, period: 1.minutes) do |req|
+  #   req.ip # unless req.path.start_with?('/assets')
+  # end
 
+  # Allow an IP address to make 5 requests every 5 seconds
+  throttle('req/ip', limit: 10, period: 10) do |req|
+    req.ip
+  end
   ### Prevent Brute-Force Login Attacks ###
 
   # The most common brute-force login attack is a brute-force password
@@ -74,4 +78,16 @@ class Rack::Attack
   #    {},   # headers
   #    ['']] # body
   # end
+
+
+ # Send the following response to throttled clients
+  self.throttled_response = ->(env) {
+    retry_after = (env['rack.attack.match_data'] || {})[:period]
+    [
+      429,
+      {'Retry-After' => retry_after.to_s},
+      [{error: "Throttle limit reached. Retry later."}.to_json]
+    ]
+  }
+
 end
