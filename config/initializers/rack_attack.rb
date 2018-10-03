@@ -82,9 +82,6 @@ class Rack::Attack
 
  # Send the following response to throttled clients
   self.throttled_response = ->(env) {
-    Rails.logger.info "------------------------------------------------------------"
-    Rails.logger.info "Throttled IP: #{request_id}"
-    Rails.logger.info "------------------------------------------------------------"
     retry_after = (env['rack.attack.match_data'] || {})[:period]
     [
       429,
