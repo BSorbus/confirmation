@@ -28,8 +28,11 @@ class Rack::Attack
   #   req.ip # unless req.path.start_with?('/assets')
   # end
 
-  # Allow an IP address to make 5 requests every 5 seconds
-  throttle('req/ip', limit: 10, period: 10) do |req|
+  # Allow an IP address to make 5 requests every 20 seconds
+  throttle('req/ip', limit: 5, period: 20.seconds) do |req|
+    Rails.logger.info "------------------------------------------------------------"
+    Rails.logger.info "Throttled IP (period): #{req.ip}"
+    Rails.logger.info "------------------------------------------------------------"
     req.ip
   end
   ### Prevent Brute-Force Login Attacks ###
@@ -44,8 +47,11 @@ class Rack::Attack
   # Throttle POST requests to /login by IP address
   #
   # Key: "rack::attack:#{Time.now.to_i/:period}:logins/ip:#{req.ip}"
-  throttle('logins/ip', limit: 5, period: 20.seconds) do |req|
+  throttle('logins/ip', limit: 5, period: 60.seconds) do |req|
     if req.path == '/login' && req.post?
+      Rails.logger.info "------------------------------------------------------------"
+      Rails.logger.info "Throttled IP (/login): #{req.ip}"
+      Rails.logger.info "------------------------------------------------------------"
       req.ip
     end
   end
@@ -58,7 +64,7 @@ class Rack::Attack
   # throttle logins for another user and force their login requests to be
   # denied, but that's not very common and shouldn't happen to you. (Knock
   # on wood!)
-  throttle("logins/email", limit: 5, period: 20.seconds) do |req|
+  throttle("logins/email", limit: 5, period: 60.seconds) do |req|
     if req.path == '/login' && req.post?
       # return the email if present, nil otherwise
       req.params['email'].presence
