@@ -30,9 +30,6 @@ class Rack::Attack
 
   # Allow an IP address to make 5 requests every 20 seconds
   throttle('req/ip', limit: 5, period: 20.seconds) do |req|
-    Rails.logger.info "------------------------------------------------------------"
-    Rails.logger.info "Throttled IP (period): #{req.ip}"
-    Rails.logger.info "------------------------------------------------------------"
     req.ip
   end
   ### Prevent Brute-Force Login Attacks ###
@@ -49,9 +46,6 @@ class Rack::Attack
   # Key: "rack::attack:#{Time.now.to_i/:period}:logins/ip:#{req.ip}"
   throttle('logins/ip', limit: 5, period: 60.seconds) do |req|
     if req.path == '/login' && req.post?
-      Rails.logger.info "------------------------------------------------------------"
-      Rails.logger.info "Throttled IP (/login): #{req.ip}"
-      Rails.logger.info "------------------------------------------------------------"
       req.ip
     end
   end
@@ -88,8 +82,10 @@ class Rack::Attack
 
  # Send the following response to throttled clients
   self.throttled_response = ->(env) {
+    Rails.logger.info "------------------------------------------------------------"
+    Rails.logger.info "Throttled IP: #{req.ip}"
+    Rails.logger.info "------------------------------------------------------------"
     retry_after = (env['rack.attack.match_data'] || {})[:period]
-    [
       429,
       {'Retry-After' => retry_after.to_s},
       [{error: "Throttle limit reached. Retry later."}.to_json]
