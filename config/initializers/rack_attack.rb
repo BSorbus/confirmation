@@ -86,6 +86,7 @@ class Rack::Attack
     Rails.logger.info "Throttled IP: #{req.ip}"
     Rails.logger.info "------------------------------------------------------------"
     retry_after = (env['rack.attack.match_data'] || {})[:period]
+    [
       429,
       {'Retry-After' => retry_after.to_s},
       [{error: "Throttle limit reached. Retry later."}.to_json]
