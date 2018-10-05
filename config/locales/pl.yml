@@ -8,7 +8,7 @@ pl:
       links: 'Zobacz też'
     certificate:
       new:
-        title: 'Znajdź Świadectwo'
+        title: 'Znajdź świadectwo'
   activemodel:
     models:
       certificate: 'Świadectwo'
