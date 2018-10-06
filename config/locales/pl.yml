@@ -4,6 +4,8 @@ pl:
   logo_link: "https://www.uke.gov.pl"
   pages:
     footer:
+      brand: 'Urząd Komunikacji Elektronicznej'
+      brand_note: 'Regulator rynku telekomunikacyjnego i pocztowego'
       contact: 'Kontakt'
       links: 'Zobacz też'
     certificate:

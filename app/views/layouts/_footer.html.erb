@@ -1,20 +1,19 @@
 <footer class="footer">
   <div class="row">
-    <div class='col-sm-3'>
-      <h4><strong>Urząd Komunikacji Elektronicznej</strong></h4>
+    <div class='col-sm-5'>
+      <h4><%= t('pages.footer.brand') %></h4>
       </br>
-      <h4><strong>Office of Electronic Communications</strong></h4>
-      <h5>POLAND</h5>
+      <h5><%= t('pages.footer.brand_note') %></h5>
       <hr class="visible-xs">
     </div>
 
-    <div class='col-sm-3 col-sm-offset-1'>
+    <div class='col-sm-2 col-sm-offset-1'>
       <h4><%= t('pages.footer.contact') %></h4>
         <ul><h5><span class="glyphicon glyphicon-envelope"></span> <%= mail_to "ske_gdynia@uke.gov.pl" %></h5></ul>
       <hr class="visible-xs">
     </div>
 
-    <div class="col-sm-3 col-sm-offset-1">
+    <div class="col-sm-2 col-sm-offset-1">
       <h4><%= t('pages.footer.links') %></h4>
         <ul><h5><span class="glyphicon glyphicon-globe"></span> <%= link_to('UKE', 'https://uke.gov.pl', target: "_blank") %></h5></ul>
         <ul><h5><span class="glyphicon glyphicon-globe"></span> <%= link_to('Facebook', 'https://web.facebook.com/UrzadKomunikacjiElektronicznej', target: "_blank") %></h5></ul>

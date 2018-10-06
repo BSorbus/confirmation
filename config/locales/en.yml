@@ -4,6 +4,8 @@ en:
   logo_link: "https://www.uke.gov.pl/en/"
   pages:
     footer:
+      brand: 'Office of Electronic Communications'
+      brand_note: 'Regulator of the telecommunications and postal market in Poland, EU'
       contact: 'Contact'
       links: 'Links'
     certificate:
