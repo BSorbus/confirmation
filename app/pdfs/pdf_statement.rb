@@ -14,6 +14,18 @@ class PdfStatement < Prawn::Document
   #   "number"=>"MA-05998", 
   #   "valid_thru"=>""}
 
+
+
+  # info:
+  # Author – who created the document
+  # CreationDate – the date and time when the document was originally created
+  # Creator – the originating application or library
+  # Producer – the product that created the PDF. In the early days of PDF people would use a Creator application like Microsoft Word to write a document, print it to a PostScript file and then the Producer would be Acrobat Distiller, the application that converted the PostScript file to a PDF. Nowadays Creator and Producer are often the same or one field is left blank.
+  # Subject – what is the document about
+  # Title –  the title of the document
+  # Keywords – keywords can be comma separated
+  # ModDate -the latest modification date and time  
+
   def initialize(certificate_data, view, author, title)
     super(:page_size => "A4", 
           :page_layout => :portrait,
@@ -109,7 +121,7 @@ class PdfStatement < Prawn::Document
   def footer
     stroke_color "BECC25"
     stroke_line [0, 10], [525,10], self.line_width = 2.0
-    text "generated from https://confirmation.uke.gov.pl,  e-mail: ske_gdynia@uke.gov.pl,  © 2018 UKE", size: 6, :style => :italic, :align => :right, :valign => :bottom  
+    text "generated from https://confirmation.uke.gov.pl,  e-mail: ske.gdynia@uke.gov.pl,  © 2018 UKE", size: 6, :style => :italic, :align => :right, :valign => :bottom  
   end
 
 end
