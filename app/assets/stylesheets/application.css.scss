@@ -24,7 +24,13 @@
 }
 
 
-$font-family-base: Arial, "Helvetica", sans-serif;
+
+//@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300,700,600);
+
+$font-family-base: 'Titillium Web', sans-serif;
+//$font-family-base: Arial, "Helvetica", sans-serif;
+//$font-size-base: 0.85rem;
 $font-size-base: 14px;
 //$font-size-base: 12px;
 
