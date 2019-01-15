@@ -7,10 +7,11 @@
 			</div>
 			<div class="col-sm-8">
 				<div class="pull-right">
-		      <%= link_to_unless_current( image_tag('en.png', class: "img img-thumbnail", width: 32), { locale: :en }) %>
-		      <%= link_to_unless_current( image_tag('pl.png', class: "img img-thumbnail", width: 32), { locale: :pl }) %>
+		      <%= link_to_unless_current( image_tag('en.png', alt: 'EN', class: "img img-thumbnail", width: 32), { locale: :en }) %>
+		      <%= link_to_unless_current( image_tag('pl.png', alt: 'PL', class: "img img-thumbnail", width: 32), { locale: :pl }) %>
 	      </div>
 			</div>
 		</div>
 	</div>
 </header>
+
