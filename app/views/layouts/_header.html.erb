@@ -1,17 +1,42 @@
-<header>
-	<br>
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-4">
-			  <%= link_to( image_tag( t('logo_file'), alt: 'Logo', :class => "img img-responsive" ), t('logo_link') ) %>
-			</div>
-			<div class="col-sm-8">
-				<div class="pull-right">
-		      <%= link_to_unless_current( image_tag('en.png', alt: 'EN', class: "img img-thumbnail", width: 32), { locale: :en }) %>
-		      <%= link_to_unless_current( image_tag('pl.png', alt: 'PL', class: "img img-thumbnail", width: 32), { locale: :pl }) %>
-	      </div>
-			</div>
-		</div>
-	</div>
-</header>
+<header class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
 
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div class="navbar-brand hidden-xs" style="margin-top: 15px; max-width: 400px;display: inline-block;">
+        <%= link_to( image_tag( t('logo_file'), alt: 'Logo', :class => "img img-responsive" ), root_path ) %>
+      </div>
+      <div class="navbar-brand visible-xs" style="max-width: 260px;display: inline-block;">
+        <%= link_to( image_tag( t('logo_file'), alt: 'Logo', :class => "img img-responsive" ), root_path ) %>
+      </div>
+
+    </div>
+
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <nav>
+
+        <ul class="nav navbar-nav navbar-left">
+         </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <%= link_to image_tag('en.png', alt: 'EN', class: "img img-thumbnail", width: 28), { locale: :en } %>
+          </li>
+          <li>
+            <%= link_to image_tag('pl.png', alt: 'PL', class: "img img-thumbnail", width: 28), { locale: :pl } %>
+          </li>
+        </ul>
+
+      </nav>
+    </div>
+
+    <hr class="hr-without-all-margin">
+
+  </div>
+</header>

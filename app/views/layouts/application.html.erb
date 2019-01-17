@@ -15,11 +15,13 @@
     <%= favicon_link_tag asset_path('favicon.ico'), :rel => 'shortcut icon', :type => "image/x-icon" %>
   </head>
 
-  <body class="site">
-    <%= render 'layouts/header' %>
-    <main class="site-content">
-      <%= yield %>
-    </main>
+  <body>
+    <div class="content">
+      <%= render 'layouts/header' %>
+      <main>
+        <%= yield %>
+      </main>
+    </div>
     <%= render 'layouts/footer' %>
   </body>
 </html>

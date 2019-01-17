@@ -5,4 +5,6 @@ Rails.application.routes.draw do
 	post '/certificates', to: 'certificates#create'
   get '/certificates/statement_to_pdf'
 
+  root 'certificates#new'
+
 end

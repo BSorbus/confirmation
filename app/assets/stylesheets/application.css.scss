@@ -67,38 +67,36 @@ $btn-default-bg:         lighten(#BECC25, 48.5%) !default;
 @import "bootstrap-datetimepicker";
 
 
-// Sticky Footer 
-.site {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-.site-content {
-  flex: 1;
+html, body {
+  height: 100%;
 }
 
 body {
-  background-color: white;
+  display: flex;
+  flex-direction: column;
 }
-
+.content {
+  flex: 1 0 auto;
+}
 
 main {
   @extend .container;
   width: 100%;
   padding-bottom: 15px;
-  //margin-top: 52px; // accommodate the navbar 51, 52 if hover:border-bottom 
+  margin-top: 93px; // accommodate the navbar 51, 52 if hover:border-bottom 
+  //margin-top: 2.0em; 
   a, a:hover {
     text-decoration: none !important;
   }
 }
 
 footer {
-  margin-top: 0px;
+  flex-shrink: 0;
+
   padding-top: 25px;
   padding-bottom: 25px;
-  padding-left: 45px;
-  padding-right: 45px;
+  padding-left: 35px;
+  padding-right: 35px;
   font-size: 1.3em;
   border-top: 1px solid #C7D540;
   color: white;
@@ -108,36 +106,100 @@ footer {
     color: #C7D540 !important;
   };
 
-  .row.display-flex {
-    display: flex;
-    flex-wrap: wrap;
-    .thumbnail {
-      background-color: inherit;
-      border-color: #666;
-      height: 100%;
-      display: flex;
-      padding: 0px;
-      flex-direction: column;
-      .caption {
-        color: inherit;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 100%;
-      };
-      .img:hover {
-        -webkit-transform: scale(1.02);
-        -moz-transform: scale(1.02);
-        transform: scale(1.02);
-
-        -webkit-box-shadow: 9px 9px 5px 0px rgba(0,0,0,0.55);
-        -moz-box-shadow: 9px 9px 5px 0px rgba(0,0,0,0.55);
-        box-shadow: 9px 9px 5px 0px rgba(0,0,0,0.55);
-      };
-    }
-  }
 }
 
+
+//--------------------------------------------------MENU -----------------------------------------
+$bgDefault      : white;
+$bgHighlight    : #ccc;  //<hr> separator
+$colDefault     : #555;
+$colHighlight   : #1B3C8F; //hover
+$dropDown       : true;
+.navbar-default {
+  border: 0;
+  background-color: $bgDefault;
+  border-color: $bgHighlight;
+  .navbar-brand {
+    color: $colDefault;
+    &:hover, &:focus {
+      color: $colHighlight; }}
+  .navbar-text {
+    color: $colDefault; }
+  .navbar-nav {
+    > li {
+      > a {
+
+    //height menu
+    line-height: 93px;
+    height: 93px;
+    padding-top: 0;
+    //height menu-end
+
+        color: $colDefault;
+        &:hover,  &:focus {
+          color: $colHighlight; }}
+      @if $dropDown {
+        > .dropdown-menu {
+          background-color: $bgDefault;
+          > li {
+            > a {
+              color: $colDefault;
+              &:hover,  &:focus {
+                color: $colHighlight;
+                background-color: $bgHighlight; }}
+            &.divider {
+              background-color: $bgHighlight;}}}}}
+    @if $dropDown {
+      .open .dropdown-menu > .active {
+        > a, > a:hover, > a:focus {
+          color: $colHighlight;
+          background-color: $bgHighlight; }}}
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}
+    > .open {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+  .navbar-toggle {
+    border-color: $bgHighlight;
+    &:hover, &:focus {
+      background-color: $bgHighlight; }
+    .icon-bar {
+      background-color: $colDefault; }}
+  .navbar-collapse,
+  .navbar-form {
+    border: none;
+    border-color: $colDefault; }
+  .navbar-link {
+    color: $colDefault;
+    &:hover {
+      color: $colHighlight; }}}
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav {
+    > li {
+      > a {
+        //height menu
+        line-height: 33px;
+        height: 33px;
+        //height menu-end
+      }
+    }
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu {
+    > li > a {
+      color: $colDefault;
+      &:hover, &:focus {
+        color: $colHighlight; }}
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+}
+
+
+//----------------------------------------------------------------------------------------------------
 
 .deviseform {
   padding-top: 25px;  
