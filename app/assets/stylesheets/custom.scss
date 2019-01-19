@@ -1,3 +1,4 @@
+
 //@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300,700,600);
 
@@ -34,11 +35,10 @@ $btn-default-bg:         lighten(#BECC25, 48.5%) !default;
 //$btn-default-border:             #ccc !default;
 
 
+
 // import the CSS framework
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "bootstrap-datetimepicker";
-
 
 html, body {
   height: 100%;
@@ -80,6 +80,7 @@ footer {
 
 }
 
+
 .deviseform {
   padding-top: 25px;  
 }
@@ -95,8 +96,8 @@ footer {
 }
 
 .modal .modal-body {
-    max-height: 70vh;
-    overflow-y: auto;
+    //max-height: 70vh;
+    //overflow-y: auto;
 }
 
 .center {
@@ -104,6 +105,15 @@ footer {
   h1 {
     margin-bottom: 10px;
   }
+}
+
+.center-v {
+  display: flex;
+  align-items: center; 
+}
+
+.center-v p {
+  margin: 0;
 }
 
 .hr-without-top-margin {
@@ -115,7 +125,6 @@ footer {
   margin-top: 0px;  /*default: 20px; */
   margin-bottom: 0px;
 }
-
 
 
 #error_explanation {
@@ -149,6 +158,10 @@ footer {
 }
 
 //--------------------------------------------------------------------------
+
+
+//@import 'font_awesome5_webfont';
+
 #result_no .panel-body {
   @extend .alert-danger;
 }
