@@ -1,16 +1,21 @@
 ---
 pl:
   logo_file: "logo_uke_pl_do_lewej.png"
-  logo_link: "https://www.uke.gov.pl"
-  pages:
+  logo_link: "http://www.uke.gov.pl"
+  layouts:
     footer:
       brand: 'Urząd Komunikacji Elektronicznej'
+      brand_address_1: ''
+      brand_address_2: ''
       brand_note: 'Regulator rynku telekomunikacyjnego i pocztowego'
       contact: 'Kontakt'
+      contact_mail: 'ske.gdynia@uke.gov.pl'
+      contact_phone: ''
+      contact_fax: ''
       links: 'Zobacz też'
-    certificate:
-      new:
-        title: 'Znajdź świadectwo'
+  certificates:
+    form:
+      title: 'Znajdź świadectwo'
   activemodel:
     models:
       certificate: 'Świadectwo'

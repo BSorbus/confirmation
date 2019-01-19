@@ -1,16 +1,21 @@
 ---
 en:
   logo_file: "logo_uke_en_do_lewej.png"
-  logo_link: "https://www.uke.gov.pl/en/"
-  pages:
+  logo_link: "http://www.uke.gov.pl/en/"
+  layouts:
     footer:
       brand: 'Office of Electronic Communications'
+      brand_address_1: ''
+      brand_address_2: ''
       brand_note: 'Regulator of the telecommunications and postal market in Poland, EU'
       contact: 'Contact'
+      contact_mail: 'ske.gdynia@uke.gov.pl'
+      contact_phone: ''
+      contact_fax: ''
       links: 'Links'
-    certificate:
-      new:
-        title: 'Find the certificate'
+  certificates:
+    form:
+      title: 'Find the certificate'
   activemodel:
     models:
       certificate: 'Świadectwo'
