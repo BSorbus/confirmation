@@ -50,6 +50,21 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
+  config.cache_store = :redis_cache_store, {
+    driver: :hiredis, 
+    url: Rails.application.secrets.redis_url,     
+    connect_timeout: 30,  # Defaults to 20 seconds
+    read_timeout:    0.2, # Defaults to 1 second
+    write_timeout:   0.2, # Defaults to 1 second
+   
+    error_handler: -> (method:, returning:, exception:) {
+      # Report errors to Sentry as warnings
+      Raven.capture_exception exception, level: 'warning',
+        tags: { method: method, returning: returning }
+    }
+  }
+
+  config.action_controller.page_cache_directory = Rails.root.join("public", "cached_pages")
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque

@@ -1,5 +1,7 @@
 class CertificatesController < ApplicationController
 
+  caches_page :new, :gzip => :best_speed
+
   def new
     @certificate ||= Certificate.new
     @certificate.number_prefix = params[:number_prefix] if params[:number_prefix].present?

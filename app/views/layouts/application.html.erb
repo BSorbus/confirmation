@@ -17,11 +17,11 @@
 
   <body>
     <div class="content">
-      <%= render 'layouts/header' %>
+      <%= render 'layouts/header', cached: true %>
       <main>
         <%= yield %>
       </main>
     </div>
-    <%= render 'layouts/footer' %>
+    <%= render 'layouts/footer', cached: true %>
   </body>
 </html>
