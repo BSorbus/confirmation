@@ -157,10 +157,13 @@ footer {
   z-index: 98;
 }
 
+@import 'font_awesome5_webfont';
+
 //--------------------------------------------------------------------------
 
 
-@import 'font_awesome5_webfont';
+@import "bootstrap-datetimepicker";
+
 
 #result_no .panel-body {
   @extend .alert-danger;
