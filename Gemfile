@@ -74,3 +74,5 @@ gem "redis", "~> 4.0"
 
 gem "actionpack-page_caching"
 gem "actionpack-action_caching"
+
+gem 'piwik_analytics'
