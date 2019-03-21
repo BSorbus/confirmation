@@ -14,7 +14,7 @@ development:
   piwik:
     id_site: 6
     url: stats.uke.gov.pl
-    disabled: false
+    disabled: true
     use_async: false
     hostname: localhost
 
@@ -30,5 +30,5 @@ production:
   piwik:
     id_site: 6
     url: stats.uke.gov.pl
-    use_async: false
+    use_async: true
     disabled: false
