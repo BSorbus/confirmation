@@ -16,6 +16,7 @@ en:
   certificates:
     form:
       title: 'Find the certificate'
+      data_required: '* - data required'
   activemodel:
     models:
       certificate: 'Świadectwo'
@@ -30,7 +31,7 @@ en:
         number_prefix: 'Type'
         number: 'Number'
         date_of_issue: 'Date of issue'
-        valid_thru: 'Valid thru'
+        valid_thru: 'Valid till'
         name: 'Name'
         given_names: 'Given names'
         birth_date: 'Birth date'

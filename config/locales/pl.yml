@@ -16,6 +16,7 @@ pl:
   certificates:
     form:
       title: 'Znajdź świadectwo'
+      data_required: '* - dane wymagane'
   activemodel:
     models:
       certificate: 'Świadectwo'

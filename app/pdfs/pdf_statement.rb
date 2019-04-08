@@ -105,19 +105,18 @@ class PdfStatement < Prawn::Document
           draw_text "#{cert[:number]}", :at => [150, 500], size: 11
     draw_text "Date of issue:", :at => [70, 480], size: 11
           draw_text "#{cert[:date_of_issue]}", :at => [150, 480], size: 11
-    draw_text "Valid thru:", :at => [70, 460], size: 11
+    draw_text "Valid till:", :at => [70, 460], size: 11
           draw_text "#{valid_thru}", :at => [150, 460], size: 11
 
     draw_text "has been issued for #{cert[:customer][:name]} #{cert[:customer][:given_names]} (date of birth #{cert[:customer][:birth_date]}).", :at => [0, 420], size: 11
 
-    text_box "The above certificate has been issued according to the IMO Convention STCW by the " + 
+    text_box "The above certificate has been issued according to ITU Radio Regulations and the IMO STCW Convention by the " + 
              "President of the Office of Electronic Communications.", size: 11, :align => :justify, 
       :at => [0, 380], 
       :width => 525, 
       :height => 300
 
   end
-
   def footer
     stroke_color "BECC25"
     stroke_line [0, 10], [525,10], self.line_width = 2.0
