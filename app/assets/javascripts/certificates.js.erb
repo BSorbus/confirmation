@@ -1,6 +1,7 @@
 function showHideFields() {
   var no_vialid_thru = "GL- GS- MA- GS- GC- IW-"
   var pos = no_vialid_thru.indexOf($("#id_number_prefix").val());
+  $("#id_number_addon").text($("#id_number_prefix").val()); 
   if (pos < 0) {
     document.getElementById("certificate_valid_thru").disabled = false;
     $('#id_valid_thru').slideDown('normal');

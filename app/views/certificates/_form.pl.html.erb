@@ -49,11 +49,15 @@
       </div>
     </div>  <!-- /row -->
     <div class="row">
+
       <div class="form-group required col-sm-12 col-md-4">
         <%= form.label :number, class: 'control-label' %>
-        <%= form.text_field :number, autofocus: false, class: 'form-control input-sm' %>
-        <small class="help-block">np. 03490</small>
+        <div class="input-group">
+          <div class="input-group-addon" id="id_number_addon"></div>
+          <%= form.text_field :number, autofocus: false, class: 'form-control input-sm' %>
+        </div>
       </div>
+
       <div class="form-group required col-sm-6 col-md-4">
         <%= form.label :date_of_issue, class: 'control-label' %>
         <%= form.text_field :date_of_issue, class: 'form-control input-sm datepicker' %>
