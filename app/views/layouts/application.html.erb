@@ -7,6 +7,9 @@
     <title><%= content_for?(:title) ? yield(:title) : "UKE Confirmation" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "UKE Confirmation" %>">
 
+    <!-- IE Compatible -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
