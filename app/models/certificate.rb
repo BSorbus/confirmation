@@ -6,7 +6,7 @@ class Certificate
   include ActiveModel::Validations::Callbacks
   extend ActiveModel::Translation
 
-	attr_accessor :number_prefix, :number, :date_of_issue, :valid_thru, :name, :given_names, :birth_date
+	attr_accessor :token, :remote_ip, :number_prefix, :number, :date_of_issue, :valid_thru, :name, :given_names, :birth_date
 
   # validates
   validates :number_prefix, presence: true,
@@ -28,6 +28,12 @@ class Certificate
   # callbacks 
   before_validation :prepare_data_params
 
+  def initialize(params = {})
+    super
+    @token = params.fetch(:token, '')
+    @remote_ip = params.fetch(:remote_ip, '')
+  end
+
   def condition_testing?
       !(valid_thru.blank? && ['GL-', 'GS-', 'MA-', 'GS-', 'GC-', 'IW-'].include?(number_prefix))
   end
@@ -42,14 +48,14 @@ class Certificate
     self.birth_date = Loofah.fragment("#{self.birth_date}").text
   end
 
-  def request_certificate(token, remote_ip)
+  def request_certificate
     begin
       # uri = URI("http://localhost:3000/api/v1/certificates/mor_search_by_multi_params")
       uri = URI("#{Rails.application.secrets[:netpar2015_api_url]}/certificates/mor_search_by_multi_params")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE # Sets the HTTPS verify mode
-      req = Net::HTTP::Get.new(uri.path, {'Content-Type' => 'application/json', 'Authorization' => "#{token}", 'X-Real-IP' => "#{remote_ip}"})
+      req = Net::HTTP::Get.new(uri.path, {'Content-Type' => 'application/json', 'Authorization' => "Token token=#{self.token}", 'X-Real-IP' => "#{self.remote_ip}"})
       req.body = {"number_prefix" => "#{self.number_prefix}", "number" => "#{self.number}", "date_of_issue" => "#{self.date_of_issue}", "valid_thru" => "#{self.valid_thru}", "name" => "#{self.name}", "given_names" => "#{self.given_names}", "birth_date" => "#{self.birth_date}" }.to_json
       res = http.request(req)
       JSON.parse(res.body)

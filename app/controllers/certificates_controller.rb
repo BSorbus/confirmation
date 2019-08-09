@@ -3,6 +3,12 @@ class CertificatesController < ApplicationController
   caches_page :new, :gzip => :best_speed
 
   def new
+
+    # exam_obj = NetparExam.new(token: user_netpar_token, id: "#{params[:id]}")
+    # response_obj = exam_obj.request_with_id
+    # render json: response_obj.body, status: response_obj.code 
+
+
     @certificate ||= Certificate.new
     @certificate.number_prefix = params[:number_prefix] if params[:number_prefix].present?
     @certificate.number = params[:number] if params[:number].present?
@@ -16,12 +22,9 @@ class CertificatesController < ApplicationController
   # POST /certificates
   # POST /certificates.json
   def create
-    @certificate = Certificate.new(certificate_params)
+    @certificate = Certificate.new(certificate_params) #merge parmas with token, remote_ip
     if @certificate.valid?
-      @user = User.new
-      user_resp = @user.request_login 
-      token = user_resp["user"]["authentication_token"] if user_resp.present? && user_resp["user"].present? 
-      @certificate_resp = @certificate.request_certificate(token, request.remote_ip)
+      @certificate_resp = @certificate.request_certificate
       respond_to do |format|
         format.html { render :new }
       end
@@ -50,7 +53,7 @@ class CertificatesController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def certificate_params
-      params.require(:certificate).permit(:number_prefix, :number, :date_of_issue, :valid_thru, :name, :given_names, :birth_date)
+      params.require(:certificate).permit(:number_prefix, :number, :date_of_issue, :valid_thru, :name, :given_names, :birth_date).merge(token: user_netpar_token, remote_ip: request.remote_ip)
     end
 
 end
