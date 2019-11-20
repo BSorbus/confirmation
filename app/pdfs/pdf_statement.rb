@@ -1,3 +1,5 @@
+require 'prawn/qrcode'
+
 class PdfStatement < Prawn::Document
 
   # { "category"=>"M", 
@@ -50,7 +52,7 @@ class PdfStatement < Prawn::Document
     logo
 #    header_left_corner
     header_right_corner
-    qrcode(certificate_data)
+    putqrcode(certificate_data)
     data(certificate_data)
     footer
   end
@@ -61,11 +63,35 @@ class PdfStatement < Prawn::Document
     stroke_line [0,735], [525,735], self.line_width = 0.1
   end
 
-  def qrcode(cert)
+  def putqrcode(cert)
     qrcode_content = "#{Rails.application.secrets[:search_url]}" +
-                      "?number_prefix=#{cert[:division][:number_prefix]}&number=#{cert[:number].last(5)}&date_of_issue=#{cert[:date_of_issue]}&valid_thru=#{cert[:valid_thru]}" +
-                      "&name=#{cert[:customer][:name]}&given_names=#{cert[:customer][:given_names]}&birth_date=#{cert[:customer][:birth_date]}"
+                     "?number_prefix=#{cert[:division][:number_prefix]}&number=#{cert[:number].last(5)}&date_of_issue=#{cert[:date_of_issue]}&valid_thru=#{cert[:valid_thru]}" +
+                     "&name=#{cert[:customer][:name]}&given_names=#{cert[:customer][:given_names]}&birth_date=#{cert[:customer][:birth_date]}"
     print_qr_code(qrcode_content, pos: [390, 140], extent: 144, stroke: false, level: :m)
+
+    # qrcode_content = "http://github.com/jabbrwcky/prawn-qrcode"
+    # qrcode = RQRCode::QRCode.new(qrcode_content, :level=>:h, :size => 5)
+    # render_qr_code(qrcode, pos: [390, 140], foreground_color: '000000', background_color: 'FFFFFF')
+
+
+    # def print_qr_code(content, level: :m, dot: DEFAULT_DOTSIZE, pos: [0,cursor], stroke: true, **options)
+    #   qr_version = 0
+    #   dot_size = dot
+    #   begin
+    #     qr_version += 1
+    #     qr_code = RQRCode::QRCode.new(content, size: qr_version, level: level)
+    #     dot = options[:extent] / (8 + qr_code.modules.length) if options[:extent]
+    #     render_qr_code(qr_code, dot: dot, pos: pos, stroke: stroke, **options)
+    #   rescue RQRCode::QRCodeRunTimeError
+    #     if qr_version < 40
+    #       retry
+    #     else
+    #       raise
+    #       end
+    #   end
+    # end
+
+
 
     # text_box "#{qrcode_content}", size: 10, 
     #   :at => [0, 615], 

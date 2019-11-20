@@ -53,8 +53,10 @@ class Certificate
       # uri = URI("http://localhost:3000/api/v1/certificates/mor_search_by_multi_params")
       uri = URI("#{Rails.application.secrets[:netpar2015_api_url]}/certificates/mor_search_by_multi_params")
       http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE # Sets the HTTPS verify mode
+      # SSL 
+      http.use_ssl = true if uri.scheme == "https" 
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE if uri.scheme == "https" # Sets the HTTPS verify mode
+      # /SSL 
       req = Net::HTTP::Get.new(uri.path, {'Content-Type' => 'application/json', 'Authorization' => "Token token=#{self.token}", 'X-Real-IP' => "#{self.remote_ip}"})
       req.body = {"number_prefix" => "#{self.number_prefix}", "number" => "#{self.number}", "date_of_issue" => "#{self.date_of_issue}", "valid_thru" => "#{self.valid_thru}", "name" => "#{self.name}", "given_names" => "#{self.given_names}", "birth_date" => "#{self.birth_date}" }.to_json
       res = http.request(req)

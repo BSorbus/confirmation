@@ -62,7 +62,7 @@ gem 'jquery-rails'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'prawn'
-gem 'prawn-qrcode'
+gem 'prawn-qrcode', git: 'https://github.com/jabbrwcky/prawn-qrcode.git', branch: 'depfu/update/rake-13.0.0'
 
 gem 'mina'
 gem 'rack-attack'
@@ -76,3 +76,5 @@ gem "actionpack-page_caching"
 gem "actionpack-action_caching"
 
 gem 'piwik_analytics'
+
+gem "nokogiri", '~> 1.10.4', require: false
