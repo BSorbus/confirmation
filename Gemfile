@@ -70,7 +70,6 @@ gem 'mina'
 gem 'rack-attack'
 
 gem 'redis-rails'
-
 gem "hiredis"
 gem "redis", "~> 4.0"
 
