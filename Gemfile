@@ -78,4 +78,4 @@ gem "actionpack-action_caching"
 
 gem 'piwik_analytics'
 
-#gem "nokogiri", '~> 1.10.4', require: false
+gem 'ttfunk', '1.5.1'
