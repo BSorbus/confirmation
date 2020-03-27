@@ -106,6 +106,20 @@ class PdfStatement < Prawn::Document
       :width => 525, 
       :height => 300
 
+    date_start  = DateTime.parse('2020/03/01')
+    date_end    = DateTime.parse('2020/08/31')
+
+    if cert[:valid_thru].present?
+      if (date_start...date_end).include?(cert[:valid_thru])         
+        draw_text "Attention!", :at => [0, 270], size: 12, :style => :bold
+        text_box "In view of the increasing spread of Coronavirus COVID-19 and the government measures taken to minimise its impact, " + 
+                 "the validity of the certificates, which expire after 1 March 2020, is extended until 1 September 2020.", size: 11, :align => :justify, 
+          :at => [0, 260], 
+          :width => 525, 
+          :height => 300, :style => :italic
+      end
+    end
+
   end
   def footer
     stroke_color "BECC25"
