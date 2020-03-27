@@ -161,6 +161,37 @@ footer {
 
 //--------------------------------------------------------------------------
 
+blockquote {
+  font-size: 0.9em;
+  width: 100%;
+  margin: 25px auto;
+  margin-bottom: 10px;
+  font-style: italic;
+  color: #33333;
+  padding: 2.1em 1.8em 2.3em 1.8em ;
+  border-left: 5px solid #C7D540 ;
+  line-height: 1.6;
+  position: relative;
+  background: #f2f2f2; //#EDEDED;
+}
+
+fieldset.my-fieldset {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
+}
+
+legend.my-fieldset {
+    font-size: 1.2em !important;
+    font-weight: normal !important;
+    text-align: left !important;
+    width:auto;
+    padding:0 10px;
+    border-bottom:none;
+}
+
 
 @import "bootstrap-datetimepicker";
 
