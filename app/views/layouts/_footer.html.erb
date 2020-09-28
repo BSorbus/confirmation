@@ -2,8 +2,12 @@
   <div class="row">
     <div class='col-sm-6'>
       <h4><%= t('.brand') %></h4>
-      <h4><%= t('.brand_address_1') %></h4>
-      <h4><%= t('.brand_address_2') %></h4>
+<!-- 
+
+      <h4><%#= t('.brand_address_1') %></h4>
+      <h4><%#= t('.brand_address_2') %></h4>
+ -->
+      <br>
       <br>
       <h5><%= t('.brand_note') %></h5>
       <hr class="visible-xs">
@@ -11,19 +15,19 @@
 
     <div class='col-sm-3'>
       <h5><%= t('.contact') %></h5>
-        <ul><h5><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;<%= mail_to t('.contact_mail') %></h5></ul>
+        <ul><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;<%= mail_to t('.contact_mail') %></ul>
 <!-- 
-        <ul><h5><span class="fa fa-phone"></span>&nbsp;&nbsp;T:&nbsp;<%#= link_to t('.contact_phone'), "tel:#{t('.contact_phone')}" %></h5></ul>
-        <ul><h5><span class="fa fa-fax"></span>&nbsp;&nbsp;F:&nbsp;<%#= link_to t('.contact_fax'), "tel:#{t('.contact_fax')}" %></h5></ul>
+        <ul><span class="fa fa-phone"></span>&nbsp;&nbsp;T:&nbsp;<%#= link_to t('.contact_phone'), "tel:#{t('.contact_phone')}" %></ul>
+        <ul><span class="fa fa-fax"></span>&nbsp;&nbsp;F:&nbsp;<%#= link_to t('.contact_fax'), "tel:#{t('.contact_fax')}" %></ul>
 
  -->      <hr class="visible-xs">
     </div>
 
     <div class="col-sm-3">
       <h5><%= t('.links') %></h5>
-        <ul><h5><span class="fa fa-globe"></span>&nbsp;&nbsp;<%= link_to('UKE', 'http://uke.gov.pl', target: "_blank") %></h5></ul>
-        <ul><h5><span class="fa fa-globe"></span>&nbsp;&nbsp;<%= link_to('Facebook', 'https://web.facebook.com/UrzadKomunikacjiElektronicznej', target: "_blank") %></h5></ul>
-        <ul><h5><span class="fa fa-globe"></span>&nbsp;&nbsp;<%= link_to('Twitter', 'https://twitter.com/uke2uke', target: "_blank") %></h5></ul>
+        <ul><span class="fa fa-globe"></span>&nbsp;&nbsp;<%= link_to('UKE', 'http://uke.gov.pl', target: "_blank") %></ul>
+        <ul><span class="fa fa-globe"></span>&nbsp;&nbsp;<%= link_to('Facebook', 'https://web.facebook.com/UrzadKomunikacjiElektronicznej', target: "_blank") %></ul>
+        <ul><span class="fa fa-globe"></span>&nbsp;&nbsp;<%= link_to('Twitter', 'https://twitter.com/uke2uke', target: "_blank") %></ul>
       <hr class="visible-xs">
 
       <h6 class="pull-right">&copy; 2018 UKE</h6>
