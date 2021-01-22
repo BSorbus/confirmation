@@ -17,6 +17,9 @@ en:
     form:
       title: 'Find the certificate'
       data_required: '* - data required'
+    declaration:
+      title: 'Accessibility declaration'
+      navbar: 'Accessibility declaration'
   activemodel:
     models:
       certificate: 'Świadectwo'

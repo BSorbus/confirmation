@@ -1,6 +1,9 @@
 class CertificatesController < ApplicationController
 
-  caches_page :new, :gzip => :best_speed
+  caches_page :new, :eclaration, :gzip => :best_speed
+
+  def declaration 
+  end
 
   def new
 

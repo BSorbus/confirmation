@@ -17,6 +17,9 @@ pl:
     form:
       title: 'Znajdź świadectwo'
       data_required: '* - dane wymagane'
+    declaration:
+      title: 'Deklaracja dostępności'
+      navbar: 'Deklaracja dostępności'
   activemodel:
     models:
       certificate: 'Świadectwo'
