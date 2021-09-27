@@ -113,7 +113,7 @@ GEM
       open4 (~> 1.3.4)
       rake
     mini_mime (1.1.0)
-    mini_portile2 (2.5.1)
+    mini_portile2 (2.6.1)
     mini_racer (0.4.0)
       libv8-node (~> 15.14.0.0)
     minitest (5.14.4)
@@ -121,8 +121,8 @@ GEM
       railties (>= 3.1)
     msgpack (1.4.2)
     nio4r (2.5.7)
-    nokogiri (1.11.6)
-      mini_portile2 (~> 2.5.0)
+    nokogiri (1.12.5)
+      mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     open4 (1.3.4)
     pdf-core (0.7.0)
@@ -265,7 +265,7 @@ DEPENDENCIES
   mina
   mini_racer
   momentjs-rails (>= 2.9.0)
-  nokogiri (~> 1.11.5)
+  nokogiri (~> 1.12.5)
   piwik_analytics
   prawn
   prawn-qrcode
