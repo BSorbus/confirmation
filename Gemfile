@@ -10,7 +10,7 @@ gem 'sqlite3', '~> 1.3.6'
 # Use Puma as the app server
 #gem 'puma', '~> 3.11'
 #gem 'puma', '~> 4.3.5'
-gem 'puma', '~> 5.3.2'
+gem 'puma', '~> 5.5.1'
 gem 'nokogiri', '~> 1.12.5'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
