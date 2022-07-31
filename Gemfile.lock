@@ -279,7 +279,7 @@ DEPENDENCIES
   piwik_analytics
   prawn
   prawn-qrcode
-  puma (~> 5.6.2)
+  puma (>= 5.6.2)
   rack-attack
   rails (~> 5.2.8.1)
   redis (~> 4.0)
@@ -299,4 +299,4 @@ RUBY VERSION
    ruby 2.7.6p219
 
 BUNDLED WITH
-   2.1.4
+   2.3.19
