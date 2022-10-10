@@ -80,4 +80,4 @@ gem "actionpack-action_caching"
 gem 'piwik_analytics'
 
 gem 'ttfunk', '1.5.1'
-gem "addressable", ">= 2.8.0"
+gem "addressable", ">= 2.8.1"
