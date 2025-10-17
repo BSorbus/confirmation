@@ -25,8 +25,7 @@
 <!--  <p><%#= certificate_resp["certificates"][0] %></p> -->
 
       <%= link_to image_tag("pdf_small.png" ), 
-            certificates_statement_to_pdf_path(req_data_certificate: certificate_resp["certificates"].first, format: "pdf"), 
-            target: "_blank" %>  
+            certificates_statement_to_pdf_path(req_data_certificate: certificate_resp["certificates"].first, format: "pdf") %>  
 
     </div>
   </div>
