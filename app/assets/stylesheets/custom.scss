@@ -220,3 +220,55 @@ legend.my-fieldset {
   @extend .alert-success;
 }
 
+
+
+//--------------------------------------------------------------------------
+
+$heading-sizes: (
+  h1-style: 36px,
+  h2-style: 30px,
+  h3-style: 24px,
+  h4-style: 18px,
+  h5-style: 14px,
+  h6-style: 12px
+);
+
+@each $class, $size in $heading-sizes {
+  .#{$class} {
+    font-size: $size;
+    font-weight: 500;
+    line-height: 1.1;
+    margin-top: $size * 0.6;
+    margin-bottom: $size * 0.4;
+
+    @media (max-width: 575.99px) {
+      font-size: $size - 4px;
+      margin-top: ($size - 4px) * 0.6;
+      margin-bottom: ($size - 4px) * 0.4;
+    }
+
+    @media (min-width: 576px) and (max-width: 767.99px) {
+      font-size: $size - 2px;
+      margin-top: ($size - 2px) * 0.6;
+      margin-bottom: ($size - 2px) * 0.4;
+    }
+
+    @media (min-width: 768px) and (max-width: 991.99px) {
+      font-size: $size;
+      margin-top: $size * 0.6;
+      margin-bottom: $size * 0.4;
+    }
+
+    @media (min-width: 992px) and (max-width: 1199.99px) {
+      font-size: $size + 2px;
+      margin-top: ($size + 2px) * 0.6;
+      margin-bottom: ($size + 2px) * 0.4;
+    }
+
+    @media (min-width: 1200px) {
+      font-size: $size + 4px;
+      margin-top: ($size + 4px) * 0.6;
+      margin-bottom: ($size + 4px) * 0.4;
+    }
+  }
+}

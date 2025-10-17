@@ -15,7 +15,7 @@
 <%= form_with(model: certificate, local: true) do |form| %>
   <div class="container">
     <div class="row">
-      <h2 class="center index-title"><%= t('.title') %></h2>
+      <h1 class="h3-style center index-title"><%= t('.title') %></h1>
     </div>
 
     <% if certificate.errors.any? %>
@@ -96,7 +96,7 @@
           Typing National Characters
         </button>
 -->
-        <h5 class="text-danger"><%= t('.data_required') %></h5>
+        <p class="text-danger"><%= t('.data_required') %></p>
         <%= link_to 'Wprowadzanie znaków narodowych', "#", data: {toggle: "modal", target: "#modal-0"} %>
       </div>
       <div class="actions col-md-6">
@@ -118,16 +118,16 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title" id="todo-label">Wprowadzanie znaków narodowych</h3>
+        <h1 class="h3-style modal-title" id="todo-label">Wprowadzanie znaków narodowych</h1>
       </div>
       <div class="modal-body">
-        <h5>Znaki narodowe typu <kbd>ą</kbd><kbd>ę</kbd><kbd>ł</kbd><kbd>ń</kbd> / <kbd>á</kbd><kbd>č</kbd><kbd>ě</kbd><kbd>é</kbd> / <kbd>ä</kbd><kbd>ü</kbd><kbd>ö</kbd><kbd>ß</kbd>, wpisz jako znaki bez akcentu, jeśli nie możesz przełączyć klawiatury na określony język.</h5>
-        <h5>np.:</h5>
-        <h5>Kozłowski -> Kozlowski</h5>
-        <h5>Novákový -> Novakovy</h5>
-        <h5>Müller -> Muller</h5>
-        <h5>Bolesław -> Boleslaw</h5>
-        <h5>Kateřina -> Katerina</h5>     
+        <h2 class="h5-style">Znaki narodowe typu <kbd>ą</kbd><kbd>ę</kbd><kbd>ł</kbd><kbd>ń</kbd> / <kbd>á</kbd><kbd>č</kbd><kbd>ě</kbd><kbd>é</kbd> / <kbd>ä</kbd><kbd>ü</kbd><kbd>ö</kbd><kbd>ß</kbd>, wpisz jako znaki bez akcentu, jeśli nie możesz przełączyć klawiatury na określony język.</h2>
+        <p>np.:</p>
+        <p>Kozłowski -> Kozlowski</p>
+        <p>Novákový -> Novakovy</p>
+        <p>Müller -> Muller</p>
+        <p>Bolesław -> Boleslaw</p>
+        <p>Kateřina -> Katerina</p>     
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Zamknij</button>
