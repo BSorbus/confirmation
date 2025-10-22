@@ -15,7 +15,7 @@
 <%= form_with(model: certificate, local: true) do |form| %>
   <div class="container">
     <div class="row">
-      <h1 class="h3-style center index-title"><%= t('.title') %></h1>
+      <p class="h3-style center index-title"><%= t('.title') %></p>
     </div>
 
     <% if certificate.errors.any? %>
@@ -118,10 +118,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h1 class="h3-style modal-title" id="todo-label">Wprowadzanie znaków narodowych</h1>
+        <p class="h3-style modal-title" id="todo-label">Wprowadzanie znaków narodowych</p>
       </div>
       <div class="modal-body">
-        <h2 class="h5-style">Znaki narodowe typu <kbd>ą</kbd><kbd>ę</kbd><kbd>ł</kbd><kbd>ń</kbd> / <kbd>á</kbd><kbd>č</kbd><kbd>ě</kbd><kbd>é</kbd> / <kbd>ä</kbd><kbd>ü</kbd><kbd>ö</kbd><kbd>ß</kbd>, wpisz jako znaki bez akcentu, jeśli nie możesz przełączyć klawiatury na określony język.</h2>
+        <p class="h5-style">Znaki narodowe typu <kbd>ą</kbd><kbd>ę</kbd><kbd>ł</kbd><kbd>ń</kbd> / <kbd>á</kbd><kbd>č</kbd><kbd>ě</kbd><kbd>é</kbd> / <kbd>ä</kbd><kbd>ü</kbd><kbd>ö</kbd><kbd>ß</kbd>, wpisz jako znaki bez akcentu, jeśli nie możesz przełączyć klawiatury na określony język.</p>
         <p>np.:</p>
         <p>Kozłowski -> Kozlowski</p>
         <p>Novákový -> Novakovy</p>

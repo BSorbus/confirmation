@@ -15,7 +15,7 @@
 <%= form_with(model: certificate, local: true) do |form| %>
   <div class="container">
     <div class="row">
-      <h1 class="h3-style center index-title"><%= t('.title') %></h1>
+      <p class="h3-style center index-title"><%= t('.title') %></p>
     </div>
 
     <% if certificate.errors.any? %>
@@ -117,10 +117,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h1 class="h3-style modal-title" id="todo-label">Typing national characters</h1>
+        <p class="h3-style modal-title" id="todo-label">Typing national characters</p>
       </div>
       <div class="modal-body">
-        <h2 class="h5-style">National characters type <kbd>ą</kbd><kbd>ę</kbd><kbd>ł</kbd><kbd>ń</kbd> / <kbd>á</kbd><kbd>č</kbd><kbd>ě</kbd><kbd>é</kbd> / <kbd>ä</kbd><kbd>ü</kbd><kbd>ö</kbd><kbd>ß</kbd>, enter as unaccent chars if you can not switch the keyboard to a specific language.</h2>
+        <p class="h5-style">National characters type <kbd>ą</kbd><kbd>ę</kbd><kbd>ł</kbd><kbd>ń</kbd> / <kbd>á</kbd><kbd>č</kbd><kbd>ě</kbd><kbd>é</kbd> / <kbd>ä</kbd><kbd>ü</kbd><kbd>ö</kbd><kbd>ß</kbd>, enter as unaccent chars if you can not switch the keyboard to a specific language.</p>
         <p>e.g.:</p>
         <p>Kozłowski -> Kozlowski</p>
         <p>Novákový -> Novakovy</p>
